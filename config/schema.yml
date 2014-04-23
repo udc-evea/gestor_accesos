@@ -1,0 +1,57 @@
+propel:
+  _attributes:
+    package: lib.model
+    defaultIdMethod: native
+  producto:
+    _attributes: { phpName: Producto, idMethod: native }
+    id: { phpName: Id, type: INTEGER, size: '10', sqlType: 'int(10) unsigned', primaryKey: true, autoIncrement: true, required: true }
+    nombre: { phpName: Nombre, type: VARCHAR, size: '200', required: true }
+    descripcion: { phpName: Descripcion, type: LONGVARCHAR, required: true }
+    url_acceso: { phpName: UrlAcceso, type: VARCHAR, size: '255', required: true }
+    url_login: { phpName: UrlLogin, type: VARCHAR, size: '255', required: false }
+    nombre_corto: { phpName: NombreCorto, type: VARCHAR, size: '100', required: true }
+  sf_guard_group:
+    _attributes: { phpName: SfGuardGroup, idMethod: native }
+    id: { phpName: Id, type: INTEGER, sqlType: 'int(11) unsigned', primaryKey: true, autoIncrement: true, required: true }
+    name: { phpName: Name, type: VARCHAR, size: '255', required: true }
+    description: { phpName: Description, type: LONGVARCHAR, required: false }
+  sf_guard_group_permission:
+    _attributes: { phpName: SfGuardGroupPermission, idMethod: native }
+    group_id: { phpName: GroupId, type: INTEGER, sqlType: 'int(11) unsigned', primaryKey: true, required: true, foreignTable: sf_guard_group, foreignReference: id, onDelete: CASCADE, onUpdate: RESTRICT }
+    permission_id: { phpName: PermissionId, type: INTEGER, sqlType: 'int(11) unsigned', primaryKey: true, required: true, foreignTable: sf_guard_permission, foreignReference: id, onDelete: CASCADE, onUpdate: RESTRICT }
+    _indexes: { sf_guard_group_permission_FI_2: [permission_id] }
+  sf_guard_permission:
+    _attributes: { phpName: SfGuardPermission, idMethod: native }
+    id: { phpName: Id, type: INTEGER, sqlType: 'int(11) unsigned', primaryKey: true, autoIncrement: true, required: true }
+    name: { phpName: Name, type: VARCHAR, size: '255', required: true }
+    description: { phpName: Description, type: LONGVARCHAR, required: false }
+  sf_guard_user:
+    _attributes: { phpName: SfGuardUser, idMethod: native }
+    id: { phpName: Id, type: INTEGER, sqlType: 'int(11) unsigned', primaryKey: true, autoIncrement: true, required: true }
+    username: { phpName: Username, type: VARCHAR, size: '128', required: true }
+    algorithm: { phpName: Algorithm, type: VARCHAR, size: '128', required: true, defaultValue: sha1 }
+    salt: { phpName: Salt, type: VARCHAR, size: '128', required: true }
+    password: { phpName: Password, type: VARCHAR, size: '128', required: true }
+    created_at: { phpName: CreatedAt, type: TIMESTAMP, required: false }
+    last_login: { phpName: LastLogin, type: TIMESTAMP, required: false }
+    is_active: { phpName: IsActive, type: TINYINT, required: true, defaultValue: '1' }
+    is_super_admin: { phpName: IsSuperAdmin, type: TINYINT, required: true, defaultValue: '0' }
+    _uniques: { sf_guard_user_U_1: [username] }
+  sf_guard_user_group:
+    _attributes: { phpName: SfGuardUserGroup, idMethod: native }
+    user_id: { phpName: UserId, type: INTEGER, sqlType: 'int(11) unsigned', primaryKey: true, required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: CASCADE, onUpdate: CASCADE }
+    group_id: { phpName: GroupId, type: INTEGER, sqlType: 'int(11) unsigned', primaryKey: true, required: true, foreignTable: sf_guard_group, foreignReference: id, onDelete: CASCADE, onUpdate: CASCADE }
+    _indexes: { sf_guard_user_group_FI_2: [group_id] }
+  sf_guard_user_permission:
+    _attributes: { phpName: SfGuardUserPermission, idMethod: native }
+    user_id: { phpName: UserId, type: INTEGER, sqlType: 'int(11) unsigned', primaryKey: true, required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: CASCADE, onUpdate: CASCADE }
+    permission_id: { phpName: PermissionId, type: INTEGER, sqlType: 'int(11) unsigned', primaryKey: true, required: true, foreignTable: sf_guard_permission, foreignReference: id, onDelete: CASCADE, onUpdate: CASCADE }
+    _indexes: { sf_guard_user_permission_FI_2: [permission_id] }
+  sf_guard_user_profile:
+    _attributes: { phpName: SfGuardUserProfile, idMethod: native }
+    id: { phpName: Id, type: INTEGER, sqlType: 'int(11) unsigned', primaryKey: true, autoIncrement: true, required: true }
+    user_id: { phpName: UserId, type: INTEGER, sqlType: 'int(11) unsigned', required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: CASCADE, onUpdate: CASCADE }
+    apeynom: { phpName: Apeynom, type: VARCHAR, size: '255', required: true }
+    dni: { phpName: Dni, type: INTEGER, size: '10', sqlType: 'int(10) unsigned', required: true }
+    email: { phpName: Email, type: VARCHAR, size: '255', required: false }
+    _indexes: { fk_sf_guard_user_profile_sf_guard_user1: [user_id] }

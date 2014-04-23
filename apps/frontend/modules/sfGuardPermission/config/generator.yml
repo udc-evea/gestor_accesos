@@ -1,0 +1,27 @@
+generator:
+  class: sfPropelGenerator
+  param:
+    model_class:           sfGuardPermission
+    theme:                 twitter
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          sf_guard_permission
+    with_propel_route:     1
+
+    config:
+      fields:
+        name: {label: Nombre corto}
+        description: {label: Descripción}
+        
+      list:
+        title: Permisos
+        batch_actions: {}
+        display: [=name, description]
+
+      edit:
+        title: Permiso "%%name%%"
+
+      new:
+        title: Nuevo permiso

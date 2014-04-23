@@ -1,0 +1,3 @@
+all:
+  stylesheets: [../sfTwitterBootstrapPlugin/css/style.css]
+  javascripts: [../sfTwitterBootstrapPlugin/js/application.js]

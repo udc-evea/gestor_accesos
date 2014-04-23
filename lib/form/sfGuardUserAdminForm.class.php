@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * sfGuardUser form for admin.
+ *
+ * @package    form
+ * @subpackage sf_guard_user
+ * @version    SVN: $Id: sfGuardUserAdminForm.class.php 13000 2008-11-14 10:44:57Z noel $
+ */
+class sfGuardUserAdminForm extends PluginsfGuardUserAdminForm
+{
+
+  public function configure()
+  {
+    parent::configure();
+  }
+}

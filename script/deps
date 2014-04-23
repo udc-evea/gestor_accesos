@@ -1,0 +1,190 @@
+#!/bin/sh
+set -e
+main () {
+  FORCE_DOWNLOAD=""
+  DOWNLOAD_DIR=/tmp/sf_cache
+  
+  if [ "$1" = "-f" ];then
+    FORCE_DOWNLOAD=1
+  fi
+  
+  # SERVER DEPS
+  symfony $FORCE_DOWNLOAD
+  sfPropelORMPlugin $FORCE_DOWNLOAD
+  propel $FORCE_DOWNLOAD
+  phing $FORCE_DOWNLOAD
+  sfTwitterBootstrapPlugin $FORCE_DOWNLOAD
+  
+  # BROWSER DEPS
+  modernizr $FORCE_DOWNLOAD
+  jquery $FORCE_DOWNLOAD
+  bootstrap $FORCE_DOWNLOAD
+  bootbox $FORCE_DOWNLOAD
+  railsjs $FORCE_DOWNLOAD
+  
+  # FINALLY...
+  listo
+}
+
+symfony() {
+  rm -rf lib/vendor/symfony*
+  mkdir -p lib/vendor
+  mkdir -p ${DOWNLOAD_DIR}
+  cd lib/vendor
+  
+  if [ -n "$1" ];then
+    rm -f ${DOWNLOAD_DIR}/tmp1.4.zip
+  fi
+  
+  wget -c https://github.com/symfony/symfony1/archive/1.4.zip -O ${DOWNLOAD_DIR}/sf1.4.zip
+  unzip -q ${DOWNLOAD_DIR}/sf1.4.zip
+  mv symfony1-1.4 symfony-1.4
+  cd ../../
+}
+
+sfPropelORMPlugin() {
+  rm -rf plugins/sfPropelORMPlugin
+  mkdir -p plugins
+  cd plugins
+  
+  if [ -n "$1" ];then
+    rm -f ${DOWNLOAD_DIR}/sfPropelORMPlugin.zip
+  fi
+  
+  wget -c https://github.com/propelorm/sfPropelORMPlugin/archive/master.zip -O ${DOWNLOAD_DIR}/sfPropelORMPlugin.zip
+  unzip -q ${DOWNLOAD_DIR}/sfPropelORMPlugin.zip
+  mv sfPropelORMPlugin-master sfPropelORMPlugin
+  cd ../
+}
+
+propel() {
+  rm -rf plugins/sfPropelORMPlugin/lib/vendor/propel
+  mkdir -p plugins/sfPropelORMPlugin/lib/vendor
+  cd plugins/sfPropelORMPlugin/lib/vendor
+  
+  if [ -n "$1" ];then
+    rm -f ${DOWNLOAD_DIR}/propel.zip
+  fi
+  wget -c https://github.com/propelorm/Propel/archive/master.zip -O ${DOWNLOAD_DIR}/propel.zip
+  unzip -q ${DOWNLOAD_DIR}/propel.zip
+  
+  mv Propel-master propel
+  cd ../../../../
+}
+
+phing() {
+  rm -rf plugins/sfPropelORMPlugin/lib/vendor/phing
+  mkdir -p plugins/sfPropelORMPlugin/lib/vendor
+  cd plugins/sfPropelORMPlugin/lib/vendor
+  
+  if [ -n "$1" ];then
+    rm -f ${DOWNLOAD_DIR}/phing.zip
+  fi
+  
+  wget -c https://github.com/phingofficial/phing/archive/master.zip -O ${DOWNLOAD_DIR}/phing.zip
+  unzip -q ${DOWNLOAD_DIR}/phing.zip
+  mv phing-master phing
+  cd ../../../../
+}
+
+sfTwitterBootstrapPlugin() {
+  rm -rf plugins/sfTwitterBootstrapPlugin
+  mkdir -p plugins
+  cd plugins
+  
+  if [ -n "$1" ];then
+    rm -f ${DOWNLOAD_DIR}/sfTwitterBootstrapPlugin.zip
+  fi
+  
+  wget -c https://github.com/real-chocopanda/sfTwitterBootstrapPlugin/archive/master.zip -O ${DOWNLOAD_DIR}/sfTwitterBootstrapPlugin.zip
+  unzip -q ${DOWNLOAD_DIR}/sfTwitterBootstrapPlugin.zip
+  mv sfTwitterBootstrapPlugin-master sfTwitterBootstrapPlugin
+  cd ../
+  
+}
+
+modernizr() {
+  mkdir -p web/js
+  cd web/js
+  
+  if [ -n "$1" ];then
+    rm -f modernizr-2.7.1.js
+  fi
+  
+  wget -c http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.7.1/modernizr.min.js -O modernizr-2.7.1.min.js
+  cd ../../
+}
+
+jquery() {
+  mkdir -p web/js
+  cd web/js
+  
+  if [ -n "$1" ];then
+    rm -f jquery-1.11.0.min.js
+  fi
+  
+  wget -c http://code.jquery.com/jquery-1.11.0.min.js
+  cd ../../
+}
+
+bootstrap() {
+  rm -rf web/bootstrap
+  mkdir -p web
+  cd web
+  
+  if [ -n "$1" ];then
+    rm -f bootstrap.zip
+  fi
+  
+  wget -c http://getbootstrap.com/2.3.2/assets/bootstrap.zip -O ${DOWNLOAD_DIR}/bootstrap.zip
+  unzip -q ${DOWNLOAD_DIR}/bootstrap.zip
+  cd ../
+}
+
+bootbox() {
+  mkdir -p web/js
+  cd web/js
+  
+  if [ -n "$1" ];then
+    rm -f bootbox.min.js
+  fi
+  
+  wget -c https://github.com/makeusabrew/bootbox/releases/download/v3.3.0/bootbox.min.js
+  cd ../../
+}
+
+railsjs() {
+  mkdir -p web/js
+  cd web/js
+  
+  if [ -n "$1" ];then
+    rm -f rails.js
+  fi
+  
+  wget -c https://raw.github.com/rails/jquery-ujs/master/src/rails.js
+  cd ../../
+}
+
+listo() {
+  echo ""
+  echo "--------------------------------------------------------------------------"
+  echo "DESCARGAS COMPLETAS :D"
+  echo "--------------------------------------------------------------------------"
+}
+
+mpGuardPlugin() {
+  rm -rf plugins/mpGuardPlugin
+  mkdir -p plugins
+  cd plugins
+  
+  if [ -n "$1" ];then
+    rm -f ${DOWNLOAD_DIR}/mpGuardPlugin.zip
+  fi
+  
+  wget -c https://github.com/mppfiles/mpGuardPlugin/archive/master.zip -O ${DOWNLOAD_DIR}/mpGuardPlugin.zip
+  unzip -q ${DOWNLOAD_DIR}/mpGuardPlugin.zip
+  mv mpGuardPlugin-master mpGuardPlugin
+  cd ../
+}
+
+main

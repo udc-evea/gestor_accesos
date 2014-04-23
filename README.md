@@ -1,4 +1,4 @@
-gestor_accesos
-==============
+symfony1-baseproject
+====================
 
-Gestor Centralizado de Cuentas de Usuario
+Just a very simple, old-school, symfony 1.4 project, with self-contained dependencies.

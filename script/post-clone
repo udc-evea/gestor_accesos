@@ -1,0 +1,31 @@
+#!/bin/sh
+set -e
+
+main() {
+
+  mkdir -p cache
+  mkdir -p log
+  cp config/databases.yml.dist config/databases.yml
+
+  script/deps
+
+  php symfony project:permissions
+  php symfony plugin:publish-assets
+
+  git remote rm origin
+  rm -rf .git/
+  git init
+  git add .
+  git commit -am "commit inicial"
+
+  listo
+}
+
+listo() {
+  echo ""
+  echo "--------------------------------------------------------------------------"
+  echo "TAREAS COMPLETAS :D"
+  echo "--------------------------------------------------------------------------"
+}
+
+main
