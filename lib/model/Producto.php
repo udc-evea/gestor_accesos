@@ -21,7 +21,7 @@ class Producto extends BaseProducto
     
     if (!$login)
     {
-      return $this->getUrlAcceso ();
+      return $this->getUrlAcceso();
     }
     else
     {

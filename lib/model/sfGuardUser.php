@@ -32,7 +32,24 @@ class sfGuardUser extends PluginsfGuardUser
     return SfGuardUserProfileQuery::create()->findOneByUserId($this->getPrimaryKey());
   }
   
+  public function getSecret()
+  {
+    return md5(sfConfig::get('sf_csrf_secret', 'aaa'));
+  }
   
-  
-  
+  public function getGba($string)
+  {
+    $res = GibberishAES::enc($string, $this->getSecret());
+    
+    return $res;
+  }
+
+  public function getPasswordPlain() 
+  {
+    $pass = $this->getPasswordGba();
+    $pass = GibberishAES::dec($pass, $this->getSecret());
+    
+    return $pass;
+  }
+
 }

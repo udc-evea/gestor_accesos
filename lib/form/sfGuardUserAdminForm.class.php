@@ -13,5 +13,18 @@ class sfGuardUserAdminForm extends PluginsfGuardUserAdminForm
   public function configure()
   {
     parent::configure();
+    unset($this['password_gba']);
+  }
+  
+  public function updateObject($values = null) {
+    
+    $values = $this->getValues();
+    if(isset($values['password']))
+    {
+      $gba = $this->getObject()->getGba($values['password']);
+      $this->getObject()->setPasswordGba($gba);
+    }
+    
+    return parent::updateObject($values);
   }
 }

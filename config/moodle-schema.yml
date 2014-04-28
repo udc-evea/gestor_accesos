@@ -1,0 +1,57 @@
+moodle:
+  _attributes:
+    package: lib.model
+    defaultIdMethod: native
+  mdl_user:
+    _attributes: { phpName: MdlUser, idMethod: native }
+    id: { phpName: Id, type: BIGINT, size: '10', primaryKey: true, autoIncrement: true, required: true }
+    auth: { phpName: Auth, type: VARCHAR, size: '20', required: true, defaultValue: manual }
+    confirmed: { phpName: Confirmed, type: BOOLEAN, size: '1', required: true, defaultValue: false }
+    policyagreed: { phpName: Policyagreed, type: BOOLEAN, size: '1', required: true, defaultValue: false }
+    deleted: { phpName: Deleted, type: BOOLEAN, size: '1', required: true, defaultValue: false }
+    suspended: { phpName: Suspended, type: BOOLEAN, size: '1', required: true, defaultValue: false }
+    mnethostid: { phpName: Mnethostid, type: BIGINT, size: '10', required: true, defaultValue: '0' }
+    username: { phpName: Username, type: VARCHAR, size: '100', required: true, defaultValue: '' }
+    password: { phpName: Password, type: VARCHAR, size: '255', required: true, defaultValue: '' }
+    idnumber: { phpName: Idnumber, type: VARCHAR, size: '255', required: true, defaultValue: '' }
+    firstname: { phpName: Firstname, type: VARCHAR, size: '100', required: true, defaultValue: '' }
+    lastname: { phpName: Lastname, type: VARCHAR, size: '100', required: true, defaultValue: '' }
+    email: { phpName: Email, type: VARCHAR, size: '100', required: true, defaultValue: '' }
+    emailstop: { phpName: Emailstop, type: BOOLEAN, size: '1', required: true, defaultValue: false }
+    icq: { phpName: Icq, type: VARCHAR, size: '15', required: true, defaultValue: '' }
+    skype: { phpName: Skype, type: VARCHAR, size: '50', required: true, defaultValue: '' }
+    yahoo: { phpName: Yahoo, type: VARCHAR, size: '50', required: true, defaultValue: '' }
+    aim: { phpName: Aim, type: VARCHAR, size: '50', required: true, defaultValue: '' }
+    msn: { phpName: Msn, type: VARCHAR, size: '50', required: true, defaultValue: '' }
+    phone1: { phpName: Phone1, type: VARCHAR, size: '20', required: true, defaultValue: '' }
+    phone2: { phpName: Phone2, type: VARCHAR, size: '20', required: true, defaultValue: '' }
+    institution: { phpName: Institution, type: VARCHAR, size: '40', required: true, defaultValue: '' }
+    department: { phpName: Department, type: VARCHAR, size: '30', required: true, defaultValue: '' }
+    address: { phpName: Address, type: VARCHAR, size: '70', required: true, defaultValue: '' }
+    city: { phpName: City, type: VARCHAR, size: '120', required: true, defaultValue: '' }
+    country: { phpName: Country, type: VARCHAR, size: '2', required: true, defaultValue: '' }
+    lang: { phpName: Lang, type: VARCHAR, size: '30', required: true, defaultValue: en }
+    theme: { phpName: Theme, type: VARCHAR, size: '50', required: true, defaultValue: '' }
+    timezone: { phpName: Timezone, type: VARCHAR, size: '100', required: true, defaultValue: '99' }
+    firstaccess: { phpName: Firstaccess, type: BIGINT, size: '10', required: true, defaultValue: '0' }
+    lastaccess: { phpName: Lastaccess, type: BIGINT, size: '10', required: true, defaultValue: '0' }
+    lastlogin: { phpName: Lastlogin, type: BIGINT, size: '10', required: true, defaultValue: '0' }
+    currentlogin: { phpName: Currentlogin, type: BIGINT, size: '10', required: true, defaultValue: '0' }
+    lastip: { phpName: Lastip, type: VARCHAR, size: '45', required: true, defaultValue: '' }
+    secret: { phpName: Secret, type: VARCHAR, size: '15', required: true, defaultValue: '' }
+    picture: { phpName: Picture, type: BIGINT, size: '10', required: true, defaultValue: '0' }
+    url: { phpName: Url, type: VARCHAR, size: '255', required: true, defaultValue: '' }
+    description: { phpName: Description, type: CLOB, required: false }
+    descriptionformat: { phpName: Descriptionformat, type: TINYINT, size: '2', required: true, defaultValue: '1' }
+    mailformat: { phpName: Mailformat, type: BOOLEAN, size: '1', required: true, defaultValue: true }
+    maildigest: { phpName: Maildigest, type: BOOLEAN, size: '1', required: true, defaultValue: false }
+    maildisplay: { phpName: Maildisplay, type: TINYINT, size: '2', required: true, defaultValue: '2' }
+    htmleditor: { phpName: Htmleditor, type: BOOLEAN, size: '1', required: true, defaultValue: true }
+    autosubscribe: { phpName: Autosubscribe, type: BOOLEAN, size: '1', required: true, defaultValue: true }
+    trackforums: { phpName: Trackforums, type: BOOLEAN, size: '1', required: true, defaultValue: false }
+    timecreated: { phpName: Timecreated, type: BIGINT, size: '10', required: true, defaultValue: '0' }
+    timemodified: { phpName: Timemodified, type: BIGINT, size: '10', required: true, defaultValue: '0' }
+    trustbitmask: { phpName: Trustbitmask, type: BIGINT, size: '10', required: true, defaultValue: '0' }
+    imagealt: { phpName: Imagealt, type: VARCHAR, size: '255', required: false }
+    _indexes: { mdl_user_del_ix: [deleted], mdl_user_con_ix: [confirmed], mdl_user_fir_ix: [firstname], mdl_user_las_ix: [lastname], mdl_user_cit_ix: [city], mdl_user_cou_ix: [country], mdl_user_las2_ix: [lastaccess], mdl_user_ema_ix: [email], mdl_user_aut_ix: [auth], mdl_user_idn_ix: [idnumber] }
+    _uniques: { mdl_user_mneuse_uix: [mnethostid, username] }

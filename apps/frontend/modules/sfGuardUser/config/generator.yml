@@ -31,7 +31,7 @@ generator:
         display:
           "NONE":                   [username, password, password_again]
           "Permisos":               [is_active, is_super_admin, sf_guard_user_group_list]
-          "Perfil":                 [apeynom, dni]
+          "Perfil":                 [apeynom, dni, email]
 
       edit:
         title: Editando usuario "%%username%%"

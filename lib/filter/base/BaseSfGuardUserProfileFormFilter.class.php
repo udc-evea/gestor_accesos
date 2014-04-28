@@ -15,7 +15,7 @@ abstract class BaseSfGuardUserProfileFormFilter extends BaseFormFilterPropel
       'user_id' => new sfWidgetFormPropelChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
       'apeynom' => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'dni'     => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'email'   => new sfWidgetFormFilterInput(),
+      'email'   => new sfWidgetFormFilterInput(array('with_empty' => false)),
     ));
 
     $this->setValidators(array(

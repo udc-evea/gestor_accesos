@@ -35,6 +35,7 @@ propel:
     algorithm: { phpName: Algorithm, type: VARCHAR, size: '128', required: true, defaultValue: sha1 }
     salt: { phpName: Salt, type: VARCHAR, size: '128', required: true }
     password: { phpName: Password, type: VARCHAR, size: '128', required: true }
+    password_gba: { phpName: PasswordGba, type: VARCHAR, size: '100', required: true }
     created_at: { phpName: CreatedAt, type: TIMESTAMP, required: false }
     last_login: { phpName: LastLogin, type: TIMESTAMP, required: false }
     is_active: { phpName: IsActive, type: BOOLEAN, size: '1', required: true, defaultValue: true }

@@ -26,7 +26,7 @@ abstract class BaseSfGuardUserProfileForm extends BaseFormPropel
       'user_id' => new sfValidatorPropelChoice(array('model' => 'sfGuardUser', 'column' => 'id')),
       'apeynom' => new sfValidatorString(array('max_length' => 255)),
       'dni'     => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647)),
-      'email'   => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'email'   => new sfValidatorString(array('max_length' => 255)),
     ));
 
     $this->widgetSchema->setNameFormat('sf_guard_user_profile[%s]');

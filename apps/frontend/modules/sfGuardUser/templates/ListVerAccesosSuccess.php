@@ -5,13 +5,18 @@
     <th>Estado</th>
     <th>Acciones</th>
   </tr>
-  <?php foreach($productos as $item):?>
+  <?php foreach($sf_data->getRaw('productos') as $item):?>
+  <?php $up = UsuarioPlataforma::factory($item, $usuario->getUsername());?>
   <tr>
     <th><?php echo $item->getNombre();?></th>
-    <td><?php echo $item->verificarUsuario($usuario);?></td>
+    <td><label class="label label-<?php echo $up->getEstadoLabel();?>"><?php echo $up->getEstadoTexto();?></label></td>
     <td>
-      <a href="#" class="btn">Crear usuario</a>
-      <a href="#" class="btn">Actualizar datos</a>
+      <?php if($up->noExiste()):?>
+        <a href="<?php echo url_for('sfGuardUser/crearUsuario');?>;?>" data-method="post" class="btn">Crear usuario</a>
+      <?php else:?>
+        <a href="<?php echo url_for('sfGuardUser/restablecerUsuario');?>;?>" data-method="post" class="btn">Actualizar datos</a>
+        <a href="<?php echo url_for('sfGuardUser/bajaUsuario');?>;?>" data-method="post" class="btn">Baja usuario</a>
+      <?php endif;?>
     </td>
   </tr>
  <?php endforeach;?>

@@ -12,12 +12,28 @@ class Mago
     $this->hash = $hash;
   }
   
+
+  public function getUsuarioProducto(Producto $prod)
+  {
+    switch($prod->getId())
+    {
+      case ProductoPeer::MOODLE:
+        $usr = new getUsuarioNativo($this->user);
+        
+        if(!$usr) return null;
+        
+        $usuario = new getUsuarioNativo($usr);
+        
+      break;
+    }
+  }
+  
   /**
    * Mismo server = fácil, consultamos la base directamente
    */
-  public function verificarUsuarioMoodle()
+  public function getUsuarioMoodle()
   {
-    $q = "SELECT * FROM moodle.mdl_user WHERE ";
+    $user= MdlUserQuery::create()->findOneByUsername();
     
     return false;
   }
