@@ -44,16 +44,48 @@ class UsuarioMoodle extends UsuarioPlataforma
           ->setLastname($user->getProfile()->getApeynom())
           ->setFirstname(" ")
           ->save();
+    
+    $this->usuario_nativo = $moodle_user;
+    
+    return true;
   }
   
   public function actualizar(\sfGuardUser $user, $otros_datos = null)
   {
+    $moodle_user = MdlUserQuery::create()->findOneByUsername($user->getUsername());
     
+    if(!$moodle_user) return false;
+    
+    $moodle_user
+          ->setAuth('manual')
+          ->setConfirmed(1)
+          ->setMnethostid(1)
+          ->setEmail($user->getProfile()->getEmail())
+          ->setUsername($user->getUsername())
+          ->setPassword(md5($user->getPasswordPlain()))
+          ->setLastname($user->getProfile()->getApeynom())
+          ->setFirstname(" ")
+          ->setDeleted(false)   //por las dudas...
+          ->save();
+    
+    $this->usuario_nativo = $moodle_user;
+    
+    return true;
   }
 
-  public function eliminar(\sfGuardUser $user, $otros_datos = null)
+  public function baja(\sfGuardUser $user, $otros_datos = null)
   {
+    $moodle_user = MdlUserQuery::create()->findOneByUsername($user->getUsername());
     
+    if(!$moodle_user) return false;
+    
+    $moodle_user
+          ->setDeleted(true)
+          ->save();
+    
+    $this->usuario_nativo = $moodle_user;
+    
+    return true;
   }
 
   public function fueEliminado() {

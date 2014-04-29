@@ -34,3 +34,18 @@ all:
       
       persistent: true
       pooling:    true
+  
+  moodle:
+    class:        sfPropelDatabase
+    param:
+      classname:  PropelPDO
+      dsn:        mysql:dbname=moodle;host=localhost
+      username:   root
+      password:   
+      
+      # see https://github.com/propelorm/sfPropelORMPlugin/issues/71
+      encoding:
+      queries: { value: 'SET NAMES UTF8;' }
+      
+      persistent: true
+      pooling:    true

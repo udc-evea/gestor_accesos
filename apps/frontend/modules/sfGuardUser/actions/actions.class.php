@@ -18,7 +18,22 @@ class sfGuardUserActions extends BasesfGuardUserActions
     $this->productos = ProductoQuery::create()->orderByNombre()->find();
   }
   
+  public function executeActualizarUsuario(sfWebRequest $request)
+  {
+    return $this->procesarUsuarioPlataforma($request, "actualizar");
+  }
+  
   public function executeCrearUsuario(sfWebRequest $request)
+  {
+    return $this->procesarUsuarioPlataforma($request, "crearNuevo");
+  }
+  
+  public function executeBajaUsuario(sfWebRequest $request)
+  {
+    return $this->procesarUsuarioPlataforma($request, "baja");
+  }
+  
+  protected function procesarUsuarioPlataforma(sfWebRequest $request, $operacionUsuario)
   {
     $user     = $request->getParameter("user");
     $producto = (int)$request->getParameter("producto");
@@ -31,13 +46,21 @@ class sfGuardUserActions extends BasesfGuardUserActions
     
     try
     {
-      UsuarioPlataforma::factory($prod)->crearNuevo($usr);
+      UsuarioPlataforma::factory($prod)->$operacionUsuario($usr);
       $this->getUser()->setFlash("notice", "Operación exitosa");
       
     } catch (Exception $ex) {
-      $this->getUser()->setFlash("error", "El registro no pudo guardarse. Intente realizar la operación manualmente (desde el componente).");
+      $this->getUser()->setFlash("error", "La operación no pudo completarse. Intente realizar la operación manualmente (desde el componente).");
     }
     
-    return $this->redirect($this->generateUrl('sf_guard_user', array('sf_action' => 'ListVerAccesos', 'sf_subject' => $usr)));
+    return $this->returnOK($request);
   }
+  
+  protected function returnOK(sfWebRequest $request)
+  {
+    $this->getResponse()->setContentType("application/json");
+    
+    return sfView::NONE;
+  }
+    
 }

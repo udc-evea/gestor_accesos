@@ -73,5 +73,5 @@ abstract class UsuarioPlataforma
   abstract public function getUsuarioNativo();
   abstract public function crearNuevo(sfGuardUser $user, $otros_datos = null);
   abstract public function actualizar(sfGuardUser $user, $otros_datos = null);
-  abstract public function eliminar(sfGuardUser $user, $otros_datos = null);
+  abstract public function baja(sfGuardUser $user, $otros_datos = null);
 }

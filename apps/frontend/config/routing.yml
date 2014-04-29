@@ -1,7 +1,14 @@
 crear_usuario:
   url: /sf_guard_user/crearUsuario
   param: {module: sf_guard_user, action: crearUsuario}
-
+  
+actualizar_usuario:
+  url: /sf_guard_user/actualizarUsuario
+  param: {module: sf_guard_user, action: actualizarUsuario}
+  
+baja_usuario:
+  url: /sf_guard_user/bajaUsuario
+  param: {module: sf_guard_user, action: bajaUsuario}
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
