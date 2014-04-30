@@ -59,8 +59,8 @@ class sfGuardUserActions extends BasesfGuardUserActions
   protected function returnOK(sfWebRequest $request)
   {
     $this->getResponse()->setContentType("application/json");
-    
-    return sfView::NONE;
+    $resp = json_encode(array());
+    return $this->renderText($resp);
   }
     
 }

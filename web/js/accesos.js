@@ -10,10 +10,22 @@ var Accesos = {
   setupAccesos: function() {
     var self = this;
     
-    $('a.accion').bind('ajax:before', function() {
-      
+    $('a.accion').on('ajax:before', function() {
       var $this = $(this);
       $this.data('params', { user: self.username, producto: $this.data('producto') });
+      $("#resultado").removeClass("text-error text-success").text("Procesando...").show();
     });
+    
+    $('a.accion').on('ajax:success', function(uno, dos, tres) {
+      var $this = $(this);
+      $("#resultado").hide().removeClass("text-error").addClass("text-success").text("Éxito").show();
+    });
+    
+    $('a.accion').on('ajax:error', function(evt, xhr, statusText) {
+      var $this = $(this);
+      $("#resultado").hide().removeClass("text-success").addClass("text-error").text("Error: "+statusText).show(100);
+    });
+    
+    
   }
 };

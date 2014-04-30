@@ -10,7 +10,11 @@
   <?php $up = UsuarioPlataforma::factory($item, $usuario->getUsername());?>
   <tr>
     <th><?php echo $item->getNombre();?></th>
-    <td><label class="label label-<?php echo $up->getEstadoLabel();?>"><?php echo $up->getEstadoTexto();?></label></td>
+    <td class="span3">
+      <label class="label label-<?php echo $up->getEstadoLabel();?>"><?php echo $up->getEstadoTexto();?></label>
+      <small><span class="hide pull-right" id="resultado"></span></small>
+      
+    </td>
     <td>
       <?php if($up->noExiste()):?>
         <a href="<?php echo url_for('sfGuardUser/crearUsuario');?>" data-remote="true" data-method="post" data-producto="<?php echo $item->getId();?>" data-disable-with="Cargando..." class="btn accion">Crear usuario</a>

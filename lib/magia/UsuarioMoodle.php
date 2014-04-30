@@ -65,7 +65,7 @@ class UsuarioMoodle extends UsuarioPlataforma
           ->setPassword(md5($user->getPasswordPlain()))
           ->setLastname($user->getProfile()->getApeynom())
           ->setFirstname(" ")
-          ->setDeleted(false)   //por las dudas...
+          ->setDeleted(false)   //por las dudas, restablezco el acceso.
           ->save();
     
     $this->usuario_nativo = $moodle_user;
