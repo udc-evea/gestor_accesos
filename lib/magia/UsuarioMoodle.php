@@ -24,13 +24,6 @@ class UsuarioMoodle extends UsuarioPlataforma
     return $this->usuario_nativo;
   }
 
-  public function getEstado()
-  {
-    if(!$this->usuario_nativo) return "danger";
-    else if($this->usuario_nativo->getDeleted()) return "warning";
-    else return "success";
-  }
-  
   public function crearNuevo(\sfGuardUser $user, $otros_datos = null)
   {
     $moodle_user = new MdlUser();
@@ -54,7 +47,7 @@ class UsuarioMoodle extends UsuarioPlataforma
   {
     $moodle_user = MdlUserQuery::create()->findOneByUsername($user->getUsername());
     
-    if(!$moodle_user) return false;
+    if(!$moodle_user) throw new Exception("Usuario inexistente");
     
     $moodle_user
           ->setAuth('manual')
@@ -77,7 +70,7 @@ class UsuarioMoodle extends UsuarioPlataforma
   {
     $moodle_user = MdlUserQuery::create()->findOneByUsername($user->getUsername());
     
-    if(!$moodle_user) return false;
+    if(!$moodle_user) throw new Exception("Usuario inexistente");
     
     $moodle_user
           ->setDeleted(true)
@@ -88,8 +81,8 @@ class UsuarioMoodle extends UsuarioPlataforma
     return true;
   }
 
-  public function fueEliminado() {
+  public function fueEliminado()
+  {
     return (bool)$this->getUsuarioNativo()->getDeleted();
   }
-
 }

@@ -47,10 +47,8 @@ class sfGuardUserActions extends BasesfGuardUserActions
     try
     {
       UsuarioPlataforma::factory($prod)->$operacionUsuario($usr);
-      $this->getUser()->setFlash("notice", "Operación exitosa");
-      
     } catch (Exception $ex) {
-      $this->getUser()->setFlash("error", "La operación no pudo completarse. Intente realizar la operación manualmente (desde el componente).");
+      return $this->returnError($request, $ex->getMessage());
     }
     
     return $this->returnOK($request);
@@ -59,6 +57,15 @@ class sfGuardUserActions extends BasesfGuardUserActions
   protected function returnOK(sfWebRequest $request)
   {
     $this->getResponse()->setContentType("application/json");
+    $resp = json_encode(array());
+    return $this->renderText($resp);
+  }
+  
+  protected function returnError(sfWebRequest $request, $msg = null)
+  {
+    $this->getResponse()->setContentType("application/json");
+    $this->getResponse()->setStatusCode(400, $msg);
+    
     $resp = json_encode(array());
     return $this->renderText($resp);
   }

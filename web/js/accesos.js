@@ -12,18 +12,23 @@ var Accesos = {
     
     $('a.accion').on('ajax:before', function() {
       var $this = $(this);
+      var $res  = $this.closest("tr").find(".resultado");
       $this.data('params', { user: self.username, producto: $this.data('producto') });
-      $("#resultado").removeClass("text-error text-success").text("Procesando...").show();
+      $res.removeClass("text-error text-success").text("Procesando...").show();
     });
     
     $('a.accion').on('ajax:success', function(uno, dos, tres) {
       var $this = $(this);
-      $("#resultado").hide().removeClass("text-error").addClass("text-success").text("Éxito").show();
+      var $res  = $this.closest("tr").find(".resultado");
+      
+      $res.hide().removeClass("text-error").addClass("text-success").text("Éxito").show();
     });
     
     $('a.accion').on('ajax:error', function(evt, xhr, statusText) {
       var $this = $(this);
-      $("#resultado").hide().removeClass("text-success").addClass("text-error").text("Error: "+statusText).show(100);
+      var $res  = $this.closest("tr").find(".resultado");
+      
+      $res.hide().removeClass("text-success").addClass("text-error").text("Error: "+statusText).show(100);
     });
     
     

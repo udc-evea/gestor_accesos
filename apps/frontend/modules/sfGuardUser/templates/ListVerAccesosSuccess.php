@@ -12,7 +12,7 @@
     <th><?php echo $item->getNombre();?></th>
     <td class="span3">
       <label class="label label-<?php echo $up->getEstadoLabel();?>"><?php echo $up->getEstadoTexto();?></label>
-      <small><span class="hide pull-right" id="resultado"></span></small>
+      <small><span class="hide pull-right resultado"></span></small>
       
     </td>
     <td>

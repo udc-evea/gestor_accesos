@@ -1,0 +1,260 @@
+pmf:
+  _attributes:
+    package: lib.model
+    defaultIdMethod: native
+  faqadminlog:
+    _attributes: { phpName: Faqadminlog, idMethod: native }
+    id: { phpName: Id, type: INTEGER, primaryKey: true, required: true }
+    time: { phpName: Time, type: INTEGER, required: true }
+    usr: { phpName: Usr, type: INTEGER, required: true }
+    text: { phpName: Text, type: LONGVARCHAR, required: true }
+    ip: { phpName: Ip, type: LONGVARCHAR, required: true }
+  faqattachment:
+    _attributes: { phpName: Faqattachment, idMethod: native }
+    id: { phpName: Id, type: INTEGER, primaryKey: true, required: true }
+    record_id: { phpName: RecordId, type: INTEGER, required: true }
+    record_lang: { phpName: RecordLang, type: VARCHAR, size: '5', required: true }
+    real_hash: { phpName: RealHash, type: CHAR, size: '32', required: true }
+    virtual_hash: { phpName: VirtualHash, type: CHAR, size: '32', required: true }
+    password_hash: { phpName: PasswordHash, type: CHAR, size: '40', required: false }
+    filename: { phpName: Filename, type: VARCHAR, size: '255', required: true }
+    filesize: { phpName: Filesize, type: INTEGER, required: true }
+    encrypted: { phpName: Encrypted, type: TINYINT, required: true, defaultValue: '0' }
+    mime_type: { phpName: MimeType, type: VARCHAR, size: '255', required: false }
+  faqattachment_file:
+    _attributes: { phpName: FaqattachmentFile, idMethod: native }
+    virtual_hash: { phpName: VirtualHash, type: CHAR, size: '32', primaryKey: true, required: true }
+    contents: { phpName: Contents, type: BLOB, required: true }
+  faqcaptcha:
+    _attributes: { phpName: Faqcaptcha, idMethod: native }
+    id: { phpName: Id, type: VARCHAR, size: '6', primaryKey: true, required: true }
+    useragent: { phpName: Useragent, type: VARCHAR, size: '255', required: true }
+    language: { phpName: Language, type: VARCHAR, size: '5', required: true }
+    ip: { phpName: Ip, type: VARCHAR, size: '64', required: true }
+    captcha_time: { phpName: CaptchaTime, type: INTEGER, required: true }
+  faqcategories:
+    _attributes: { phpName: Faqcategories, idMethod: native }
+    id: { phpName: Id, type: INTEGER, primaryKey: true, required: true }
+    lang: { phpName: Lang, type: VARCHAR, size: '5', primaryKey: true, required: true }
+    parent_id: { phpName: ParentId, type: INTEGER, required: true }
+    name: { phpName: Name, type: VARCHAR, size: '255', required: true }
+    description: { phpName: Description, type: VARCHAR, size: '255', required: false }
+    user_id: { phpName: UserId, type: INTEGER, required: true }
+  faqcategory_group:
+    _attributes: { phpName: FaqcategoryGroup, idMethod: native }
+    category_id: { phpName: CategoryId, type: INTEGER, primaryKey: true, required: true }
+    group_id: { phpName: GroupId, type: INTEGER, primaryKey: true, required: true }
+  faqcategory_user:
+    _attributes: { phpName: FaqcategoryUser, idMethod: native }
+    category_id: { phpName: CategoryId, type: INTEGER, primaryKey: true, required: true }
+    user_id: { phpName: UserId, type: INTEGER, primaryKey: true, required: true }
+  faqcategoryrelations:
+    _attributes: { phpName: Faqcategoryrelations, idMethod: native }
+    category_id: { phpName: CategoryId, type: INTEGER, primaryKey: true, required: true }
+    category_lang: { phpName: CategoryLang, type: VARCHAR, size: '5', primaryKey: true, required: true, defaultValue: '' }
+    record_id: { phpName: RecordId, type: INTEGER, primaryKey: true, required: true }
+    record_lang: { phpName: RecordLang, type: VARCHAR, size: '5', primaryKey: true, required: true, defaultValue: '' }
+    _indexes: { idx_records: [record_id, record_lang] }
+  faqchanges:
+    _attributes: { phpName: Faqchanges, idMethod: native }
+    id: { phpName: Id, type: INTEGER, primaryKey: true, required: true }
+    beitrag: { phpName: Beitrag, type: INTEGER, required: true }
+    lang: { phpName: Lang, type: VARCHAR, size: '5', primaryKey: true, required: true }
+    revision_id: { phpName: RevisionId, type: INTEGER, required: true, defaultValue: '0' }
+    usr: { phpName: Usr, type: INTEGER, required: true }
+    datum: { phpName: Datum, type: INTEGER, required: true }
+    what: { phpName: What, type: LONGVARCHAR, required: false }
+  faqcomments:
+    _attributes: { phpName: Faqcomments, idMethod: native }
+    id_comment: { phpName: IdComment, type: INTEGER, primaryKey: true, required: true }
+    id: { phpName: Id, type: INTEGER, required: true }
+    type: { phpName: Type, type: VARCHAR, size: '10', required: true }
+    usr: { phpName: Usr, type: VARCHAR, size: '255', required: true }
+    email: { phpName: Email, type: VARCHAR, size: '255', required: true }
+    comment: { phpName: Comment, type: LONGVARCHAR, required: true }
+    datum: { phpName: Datum, type: INTEGER, size: '15', required: true }
+    helped: { phpName: Helped, type: LONGVARCHAR, required: false }
+  faqconfig:
+    _attributes: { phpName: Faqconfig, idMethod: native }
+    config_name: { phpName: ConfigName, type: VARCHAR, size: '255', primaryKey: true, required: true, defaultValue: '' }
+    config_value: { phpName: ConfigValue, type: VARCHAR, size: '255', required: false }
+  faqdata:
+    _attributes: { phpName: Faqdata, idMethod: native }
+    id: { phpName: Id, type: INTEGER, primaryKey: true, required: true }
+    lang: { phpName: Lang, type: VARCHAR, size: '5', primaryKey: true, required: true }
+    solution_id: { phpName: SolutionId, type: INTEGER, required: true }
+    revision_id: { phpName: RevisionId, type: INTEGER, required: true, defaultValue: '0' }
+    active: { phpName: Active, type: CHAR, size: '3', required: true }
+    sticky: { phpName: Sticky, type: INTEGER, required: true }
+    keywords: { phpName: Keywords, type: LONGVARCHAR, required: false }
+    thema: { phpName: Thema, type: LONGVARCHAR, required: true }
+    content: { phpName: Content, type: CLOB, required: false }
+    author: { phpName: Author, type: VARCHAR, size: '255', required: true }
+    email: { phpName: Email, type: VARCHAR, size: '255', required: true }
+    comment: { phpName: Comment, type: CHAR, sqlType: 'enum(''y'',''n'')', required: true, defaultValue: y }
+    datum: { phpName: Datum, type: VARCHAR, size: '15', required: true }
+    links_state: { phpName: LinksState, type: VARCHAR, size: '7', required: false }
+    links_check_date: { phpName: LinksCheckDate, type: INTEGER, required: true, defaultValue: '0' }
+    date_start: { phpName: DateStart, type: VARCHAR, size: '14', required: true, defaultValue: '00000000000000' }
+    date_end: { phpName: DateEnd, type: VARCHAR, size: '14', required: true, defaultValue: '99991231235959' }
+    _indexes: { keywords: [keywords, thema, content] }
+  faqdata_group:
+    _attributes: { phpName: FaqdataGroup, idMethod: native }
+    record_id: { phpName: RecordId, type: INTEGER, primaryKey: true, required: true }
+    group_id: { phpName: GroupId, type: INTEGER, primaryKey: true, required: true }
+  faqdata_revisions:
+    _attributes: { phpName: FaqdataRevisions, idMethod: native }
+    id: { phpName: Id, type: INTEGER, primaryKey: true, required: true }
+    lang: { phpName: Lang, type: VARCHAR, size: '5', primaryKey: true, required: true }
+    solution_id: { phpName: SolutionId, type: INTEGER, primaryKey: true, required: true }
+    revision_id: { phpName: RevisionId, type: INTEGER, primaryKey: true, required: true, defaultValue: '0' }
+    active: { phpName: Active, type: CHAR, size: '3', required: true }
+    sticky: { phpName: Sticky, type: INTEGER, required: true }
+    keywords: { phpName: Keywords, type: LONGVARCHAR, required: false }
+    thema: { phpName: Thema, type: LONGVARCHAR, required: true }
+    content: { phpName: Content, type: CLOB, required: false }
+    author: { phpName: Author, type: VARCHAR, size: '255', required: true }
+    email: { phpName: Email, type: VARCHAR, size: '255', required: true }
+    comment: { phpName: Comment, type: CHAR, required: false, defaultValue: y }
+    datum: { phpName: Datum, type: VARCHAR, size: '15', required: true }
+    links_state: { phpName: LinksState, type: VARCHAR, size: '7', required: false }
+    links_check_date: { phpName: LinksCheckDate, type: INTEGER, required: true, defaultValue: '0' }
+    date_start: { phpName: DateStart, type: VARCHAR, size: '14', required: true, defaultValue: '00000000000000' }
+    date_end: { phpName: DateEnd, type: VARCHAR, size: '14', required: true, defaultValue: '99991231235959' }
+  faqdata_tags:
+    _attributes: { phpName: FaqdataTags, idMethod: native }
+    record_id: { phpName: RecordId, type: INTEGER, primaryKey: true, required: true }
+    tagging_id: { phpName: TaggingId, type: INTEGER, primaryKey: true, required: true }
+  faqdata_user:
+    _attributes: { phpName: FaqdataUser, idMethod: native }
+    record_id: { phpName: RecordId, type: INTEGER, primaryKey: true, required: true }
+    user_id: { phpName: UserId, type: INTEGER, primaryKey: true, required: true }
+  faqglossary:
+    _attributes: { phpName: Faqglossary, idMethod: native }
+    id: { phpName: Id, type: INTEGER, primaryKey: true, required: true }
+    lang: { phpName: Lang, type: VARCHAR, size: '5', primaryKey: true, required: true }
+    item: { phpName: Item, type: VARCHAR, size: '255', required: true }
+    definition: { phpName: Definition, type: LONGVARCHAR, required: true }
+  faqgroup:
+    _attributes: { phpName: Faqgroup, idMethod: native }
+    group_id: { phpName: GroupId, type: INTEGER, primaryKey: true, required: true }
+    name: { phpName: Name, type: VARCHAR, size: '25', required: false }
+    description: { phpName: Description, type: LONGVARCHAR, required: false }
+    auto_join: { phpName: AutoJoin, type: INTEGER, size: '1', sqlType: 'int(1) unsigned', required: false }
+    _uniques: { name: [name] }
+  faqgroup_right:
+    _attributes: { phpName: FaqgroupRight, idMethod: native }
+    group_id: { phpName: GroupId, type: INTEGER, primaryKey: true, required: true }
+    right_id: { phpName: RightId, type: INTEGER, sqlType: 'int(11) unsigned', primaryKey: true, required: true }
+  faqinstances:
+    _attributes: { phpName: Faqinstances, idMethod: native }
+    id: { phpName: Id, type: INTEGER, primaryKey: true, required: true }
+    url: { phpName: Url, type: VARCHAR, size: '255', required: true }
+    instance: { phpName: Instance, type: VARCHAR, size: '255', required: true }
+    comment: { phpName: Comment, type: LONGVARCHAR, required: false }
+    created: { phpName: Created, type: TIMESTAMP, required: true, defaultValue: '0000-00-00 00:00:00' }
+    modified: { phpName: Modified, type: TIMESTAMP, required: true, defaultExpr: CURRENT_TIMESTAMP }
+  faqinstances_config:
+    _attributes: { phpName: FaqinstancesConfig, idMethod: native }
+    instance_id: { phpName: InstanceId, type: INTEGER, primaryKey: true, required: true }
+    config_name: { phpName: ConfigName, type: VARCHAR, size: '255', primaryKey: true, required: true, defaultValue: '' }
+    config_value: { phpName: ConfigValue, type: VARCHAR, size: '255', required: false }
+  faqnews:
+    _attributes: { phpName: Faqnews, idMethod: native }
+    id: { phpName: Id, type: INTEGER, primaryKey: true, required: true }
+    lang: { phpName: Lang, type: VARCHAR, size: '5', required: true }
+    header: { phpName: Header, type: VARCHAR, size: '255', required: true }
+    artikel: { phpName: Artikel, type: LONGVARCHAR, required: true }
+    datum: { phpName: Datum, type: VARCHAR, size: '14', required: true }
+    author_name: { phpName: AuthorName, type: VARCHAR, size: '255', required: false }
+    author_email: { phpName: AuthorEmail, type: VARCHAR, size: '255', required: false }
+    active: { phpName: Active, type: CHAR, required: false, defaultValue: y }
+    comment: { phpName: Comment, type: CHAR, required: false, defaultValue: n }
+    date_start: { phpName: DateStart, type: VARCHAR, size: '14', required: true, defaultValue: '00000000000000' }
+    date_end: { phpName: DateEnd, type: VARCHAR, size: '14', required: true, defaultValue: '99991231235959' }
+    link: { phpName: Link, type: VARCHAR, size: '255', required: false }
+    linktitel: { phpName: Linktitel, type: VARCHAR, size: '255', required: false }
+    target: { phpName: Target, type: VARCHAR, size: '255', required: true }
+  faqquestions:
+    _attributes: { phpName: Faqquestions, idMethod: native }
+    id: { phpName: Id, type: INTEGER, sqlType: 'int(11) unsigned', primaryKey: true, required: true }
+    username: { phpName: Username, type: VARCHAR, size: '100', required: true }
+    email: { phpName: Email, type: VARCHAR, size: '100', required: true }
+    category_id: { phpName: CategoryId, type: INTEGER, required: true }
+    question: { phpName: Question, type: LONGVARCHAR, required: true }
+    created: { phpName: Created, type: VARCHAR, size: '20', required: true }
+    is_visible: { phpName: IsVisible, type: CHAR, required: false, defaultValue: Y }
+    answer_id: { phpName: AnswerId, type: INTEGER, required: true, defaultValue: '0' }
+  faqright:
+    _attributes: { phpName: Faqright, idMethod: native }
+    right_id: { phpName: RightId, type: INTEGER, sqlType: 'int(11) unsigned', primaryKey: true, required: true }
+    name: { phpName: Name, type: VARCHAR, size: '50', required: false }
+    description: { phpName: Description, type: LONGVARCHAR, required: false }
+    for_users: { phpName: ForUsers, type: INTEGER, size: '1', required: false, defaultValue: '1' }
+    for_groups: { phpName: ForGroups, type: INTEGER, size: '1', required: false, defaultValue: '1' }
+  faqsearches:
+    _attributes: { phpName: Faqsearches, idMethod: native }
+    id: { phpName: Id, type: INTEGER, primaryKey: true, required: true }
+    lang: { phpName: Lang, type: VARCHAR, size: '5', primaryKey: true, required: true }
+    searchterm: { phpName: Searchterm, type: VARCHAR, size: '255', required: true }
+    searchdate: { phpName: Searchdate, type: TIMESTAMP, required: true, defaultExpr: CURRENT_TIMESTAMP }
+  faqsessions:
+    _attributes: { phpName: Faqsessions, idMethod: native }
+    sid: { phpName: Sid, type: INTEGER, primaryKey: true, required: true }
+    user_id: { phpName: UserId, type: INTEGER, required: true }
+    ip: { phpName: Ip, type: LONGVARCHAR, required: true }
+    time: { phpName: Time, type: INTEGER, required: true }
+  faqstopwords:
+    _attributes: { phpName: Faqstopwords, idMethod: native }
+    id: { phpName: Id, type: INTEGER, primaryKey: true, required: true }
+    lang: { phpName: Lang, type: VARCHAR, size: '5', primaryKey: true, required: true }
+    stopword: { phpName: Stopword, type: VARCHAR, size: '64', required: true }
+  faqtags:
+    _attributes: { phpName: Faqtags, idMethod: native }
+    tagging_id: { phpName: TaggingId, type: INTEGER, primaryKey: true, required: true }
+    tagging_name: { phpName: TaggingName, type: VARCHAR, size: '255', primaryKey: true, required: true }
+  faquser:
+    _attributes: { phpName: Faquser, idMethod: native }
+    user_id: { phpName: UserId, type: INTEGER, primaryKey: true, required: true }
+    login: { phpName: Login, type: VARCHAR, size: '25', required: true }
+    session_id: { phpName: SessionId, type: VARCHAR, size: '150', required: false }
+    session_timestamp: { phpName: SessionTimestamp, type: INTEGER, sqlType: 'int(11) unsigned', required: false }
+    ip: { phpName: Ip, type: VARCHAR, size: '15', required: false }
+    account_status: { phpName: AccountStatus, type: VARCHAR, size: '50', required: false }
+    last_login: { phpName: LastLogin, type: VARCHAR, size: '14', required: false }
+    auth_source: { phpName: AuthSource, type: VARCHAR, size: '100', required: false }
+    member_since: { phpName: MemberSince, type: VARCHAR, size: '14', required: false }
+    remember_me: { phpName: RememberMe, type: VARCHAR, size: '150', required: false }
+    _uniques: { login: [login], session: [session_id] }
+  faquser_group:
+    _attributes: { phpName: FaquserGroup, idMethod: native }
+    user_id: { phpName: UserId, type: INTEGER, primaryKey: true, required: true }
+    group_id: { phpName: GroupId, type: INTEGER, primaryKey: true, required: true }
+  faquser_right:
+    _attributes: { phpName: FaquserRight, idMethod: native }
+    user_id: { phpName: UserId, type: INTEGER, primaryKey: true, required: true }
+    right_id: { phpName: RightId, type: INTEGER, primaryKey: true, required: true }
+  faquserdata:
+    _attributes: { phpName: Faquserdata, idMethod: native }
+    user_id: { phpName: UserId, type: INTEGER, primaryKey: true, required: true }
+    last_modified: { phpName: LastModified, type: VARCHAR, size: '14', required: false }
+    display_name: { phpName: DisplayName, type: VARCHAR, size: '50', required: false }
+    email: { phpName: Email, type: VARCHAR, size: '100', required: false }
+  faquserlogin:
+    _attributes: { phpName: Faquserlogin, idMethod: native }
+    login: { phpName: Login, type: VARCHAR, size: '128', primaryKey: true, required: true }
+    pass: { phpName: Pass, type: VARCHAR, size: '80', required: false }
+  faqvisits:
+    _attributes: { phpName: Faqvisits, idMethod: native }
+    id: { phpName: Id, type: INTEGER, primaryKey: true, required: true }
+    lang: { phpName: Lang, type: VARCHAR, size: '5', primaryKey: true, required: true }
+    visits: { phpName: Visits, type: INTEGER, required: true }
+    last_visit: { phpName: LastVisit, type: INTEGER, size: '15', required: true }
+  faqvoting:
+    _attributes: { phpName: Faqvoting, idMethod: native }
+    id: { phpName: Id, type: INTEGER, sqlType: 'int(11) unsigned', primaryKey: true, required: true }
+    artikel: { phpName: Artikel, type: INTEGER, sqlType: 'int(11) unsigned', required: true }
+    vote: { phpName: Vote, type: INTEGER, sqlType: 'int(11) unsigned', required: true }
+    usr: { phpName: Usr, type: INTEGER, sqlType: 'int(11) unsigned', required: true }
+    datum: { phpName: Datum, type: VARCHAR, size: '20', required: true, defaultValue: '' }
+    ip: { phpName: Ip, type: VARCHAR, size: '15', required: true, defaultValue: '' }

@@ -1,0 +1,15 @@
+#this file extends your Propel schema.yml file, allowing to perform propel:build-schema without worries.
+pmf:
+  _attributes:
+    package: lib.model
+    defaultIdMethod: native
+
+  faquserlogin:
+    _attributes: { phpName: Faquserlogin }
+    login: { phpName: Login, type: VARCHAR, size: '128', primaryKey: true, required: true, foreignTable: faquser, foreignReference: login, onDelete: CASCADE }
+  
+  faquserdata:
+    _attributes: { phpName: Faquserdata }
+    user_id: { phpName: UserId, foreignTable: faquser, foreignReference: user_id, onDelete: CASCADE }
+  
+  

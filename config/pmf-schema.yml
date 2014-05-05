@@ -1,0 +1,39 @@
+pmf:
+  _attributes:
+    package: lib.model
+    defaultIdMethod: native
+  faquser:
+    _attributes: { phpName: Faquser, idMethod: native }
+    user_id: { phpName: UserId, type: INTEGER, primaryKey: true, required: true }
+    login: { phpName: Login, type: VARCHAR, size: '25', required: true }
+    session_id: { phpName: SessionId, type: VARCHAR, size: '150', required: false }
+    session_timestamp: { phpName: SessionTimestamp, type: INTEGER, sqlType: 'int(11) unsigned', required: false }
+    ip: { phpName: Ip, type: VARCHAR, size: '15', required: false }
+    account_status: { phpName: AccountStatus, type: VARCHAR, size: '50', required: false }
+    last_login: { phpName: LastLogin, type: VARCHAR, size: '14', required: false }
+    auth_source: { phpName: AuthSource, type: VARCHAR, size: '100', required: false }
+    member_since: { phpName: MemberSince, type: VARCHAR, size: '14', required: false }
+    remember_me: { phpName: RememberMe, type: VARCHAR, size: '150', required: false }
+    _uniques: { login: [login], session: [session_id] }
+  faquser_group:
+    _attributes: { phpName: FaquserGroup, idMethod: native }
+    user_id: { phpName: UserId, type: INTEGER, primaryKey: true, required: true }
+    group_id: { phpName: GroupId, type: INTEGER, primaryKey: true, required: true }
+  faquser_right:
+    _attributes: { phpName: FaquserRight, idMethod: native }
+    user_id: { phpName: UserId, type: INTEGER, primaryKey: true, required: true }
+    right_id: { phpName: RightId, type: INTEGER, primaryKey: true, required: true }
+  faquserdata:
+    _attributes: { phpName: Faquserdata, idMethod: native }
+    user_id: { phpName: UserId, type: INTEGER, primaryKey: true, required: true }
+    last_modified: { phpName: LastModified, type: VARCHAR, size: '14', required: false }
+    display_name: { phpName: DisplayName, type: VARCHAR, size: '50', required: false }
+    email: { phpName: Email, type: VARCHAR, size: '100', required: false }
+  faquserlogin:
+    _attributes: { phpName: Faquserlogin, idMethod: native }
+    login: { phpName: Login, type: VARCHAR, size: '128', primaryKey: true, required: true }
+    pass: { phpName: Pass, type: VARCHAR, size: '80', required: false }
+  faqconfig:
+    _attributes: { phpName: Faqconfig, idMethod: native }
+    config_name: { phpName: ConfigName, type: VARCHAR, size: '255', primaryKey: true, required: true, defaultValue: '' }
+    config_value: { phpName: ConfigValue, type: VARCHAR, size: '255', required: false }

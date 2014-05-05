@@ -32,7 +32,7 @@ abstract class UsuarioPlataforma
       break;
      
      case self::PROD_PMF:
-        $up =  new UsuarioMoodle();
+        $up =  new UsuarioPMF();
        break;
        
       default:
@@ -53,6 +53,7 @@ abstract class UsuarioPlataforma
   public function getEstadoTexto()
   {
     if(!$this->usuario_nativo) return "INEXISTENTE";
+    elseif($this->fueEliminado()) return "DE BAJA";
     else return "ACTIVO";
   }
   
@@ -67,9 +68,15 @@ abstract class UsuarioPlataforma
     return $this->getEstadoTexto() == "INEXISTENTE";
   }
   
+  public function getEstado()
+  {
+    if(!$this->usuario_nativo) return "danger";
+    else if($this->fueEliminado()) return "warning";
+    else return "success";
+  }
+  
   
   abstract public function fueEliminado();
-  abstract public function getEstado();
   abstract public function getUsuarioNativo();
   abstract public function crearNuevo(sfGuardUser $user, $otros_datos = null);
   abstract public function actualizar(sfGuardUser $user, $otros_datos = null);
