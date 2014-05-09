@@ -1,0 +1,129 @@
+wordpress:
+  _attributes:
+    package: lib.model
+    defaultIdMethod: native
+  wp_commentmeta:
+    _attributes: { phpName: WpCommentmeta, idMethod: native }
+    meta_id: { phpName: MetaId, type: BIGINT, sqlType: 'bigint(20) unsigned', primaryKey: true, autoIncrement: true, required: true }
+    comment_id: { phpName: CommentId, type: BIGINT, sqlType: 'bigint(20) unsigned', required: true, defaultValue: '0' }
+    meta_key: { phpName: MetaKey, type: VARCHAR, size: '255', required: false }
+    meta_value: { phpName: MetaValue, type: CLOB, required: false }
+    _indexes: { comment_id: [comment_id], meta_key: [meta_key] }
+  wp_comments:
+    _attributes: { phpName: WpComments, idMethod: native }
+    comment_ID: { phpName: CommentId, type: BIGINT, sqlType: 'bigint(20) unsigned', primaryKey: true, autoIncrement: true, required: true }
+    comment_post_ID: { phpName: CommentPostId, type: BIGINT, sqlType: 'bigint(20) unsigned', required: true, defaultValue: '0' }
+    comment_author: { phpName: CommentAuthor, type: VARCHAR, required: true }
+    comment_author_email: { phpName: CommentAuthorEmail, type: VARCHAR, size: '100', required: true, defaultValue: '' }
+    comment_author_url: { phpName: CommentAuthorUrl, type: VARCHAR, size: '200', required: true, defaultValue: '' }
+    comment_author_IP: { phpName: CommentAuthorIp, type: VARCHAR, size: '100', required: true, defaultValue: '' }
+    comment_date: { phpName: CommentDate, type: TIMESTAMP, required: true, defaultValue: '0000-00-00 00:00:00' }
+    comment_date_gmt: { phpName: CommentDateGmt, type: TIMESTAMP, required: true, defaultValue: '0000-00-00 00:00:00' }
+    comment_content: { phpName: CommentContent, type: LONGVARCHAR, required: true }
+    comment_karma: { phpName: CommentKarma, type: INTEGER, required: true, defaultValue: '0' }
+    comment_approved: { phpName: CommentApproved, type: VARCHAR, size: '20', required: true, defaultValue: '1' }
+    comment_agent: { phpName: CommentAgent, type: VARCHAR, size: '255', required: true, defaultValue: '' }
+    comment_type: { phpName: CommentType, type: VARCHAR, size: '20', required: true, defaultValue: '' }
+    comment_parent: { phpName: CommentParent, type: BIGINT, sqlType: 'bigint(20) unsigned', required: true, defaultValue: '0' }
+    user_id: { phpName: UserId, type: BIGINT, sqlType: 'bigint(20) unsigned', required: true, defaultValue: '0' }
+    _indexes: { comment_post_ID: [comment_post_ID], comment_approved_date_gmt: [comment_approved, comment_date_gmt], comment_date_gmt: [comment_date_gmt], comment_parent: [comment_parent] }
+  wp_links:
+    _attributes: { phpName: WpLinks, idMethod: native }
+    link_id: { phpName: LinkId, type: BIGINT, sqlType: 'bigint(20) unsigned', primaryKey: true, autoIncrement: true, required: true }
+    link_url: { phpName: LinkUrl, type: VARCHAR, size: '255', required: true, defaultValue: '' }
+    link_name: { phpName: LinkName, type: VARCHAR, size: '255', required: true, defaultValue: '' }
+    link_image: { phpName: LinkImage, type: VARCHAR, size: '255', required: true, defaultValue: '' }
+    link_target: { phpName: LinkTarget, type: VARCHAR, size: '25', required: true, defaultValue: '' }
+    link_description: { phpName: LinkDescription, type: VARCHAR, size: '255', required: true, defaultValue: '' }
+    link_visible: { phpName: LinkVisible, type: VARCHAR, size: '20', required: true, defaultValue: Y }
+    link_owner: { phpName: LinkOwner, type: BIGINT, sqlType: 'bigint(20) unsigned', required: true, defaultValue: '1' }
+    link_rating: { phpName: LinkRating, type: INTEGER, required: true, defaultValue: '0' }
+    link_updated: { phpName: LinkUpdated, type: TIMESTAMP, required: true, defaultValue: '0000-00-00 00:00:00' }
+    link_rel: { phpName: LinkRel, type: VARCHAR, size: '255', required: true, defaultValue: '' }
+    link_notes: { phpName: LinkNotes, type: LONGVARCHAR, required: true }
+    link_rss: { phpName: LinkRss, type: VARCHAR, size: '255', required: true, defaultValue: '' }
+    _indexes: { link_visible: [link_visible] }
+  wp_options:
+    _attributes: { phpName: WpOptions, idMethod: native }
+    option_id: { phpName: OptionId, type: BIGINT, sqlType: 'bigint(20) unsigned', primaryKey: true, autoIncrement: true, required: true }
+    option_name: { phpName: OptionName, type: VARCHAR, size: '64', required: true, defaultValue: '' }
+    option_value: { phpName: OptionValue, type: CLOB, required: true }
+    autoload: { phpName: Autoload, type: VARCHAR, size: '20', required: true, defaultValue: yes }
+    _uniques: { option_name: [option_name] }
+  wp_postmeta:
+    _attributes: { phpName: WpPostmeta, idMethod: native }
+    meta_id: { phpName: MetaId, type: BIGINT, sqlType: 'bigint(20) unsigned', primaryKey: true, autoIncrement: true, required: true }
+    post_id: { phpName: PostId, type: BIGINT, sqlType: 'bigint(20) unsigned', required: true, defaultValue: '0' }
+    meta_key: { phpName: MetaKey, type: VARCHAR, size: '255', required: false }
+    meta_value: { phpName: MetaValue, type: CLOB, required: false }
+    _indexes: { post_id: [post_id], meta_key: [meta_key] }
+  wp_posts:
+    _attributes: { phpName: WpPosts, idMethod: native }
+    ID: { phpName: Id, type: BIGINT, sqlType: 'bigint(20) unsigned', primaryKey: true, autoIncrement: true, required: true }
+    post_author: { phpName: PostAuthor, type: BIGINT, sqlType: 'bigint(20) unsigned', required: true, defaultValue: '0' }
+    post_date: { phpName: PostDate, type: TIMESTAMP, required: true, defaultValue: '0000-00-00 00:00:00' }
+    post_date_gmt: { phpName: PostDateGmt, type: TIMESTAMP, required: true, defaultValue: '0000-00-00 00:00:00' }
+    post_content: { phpName: PostContent, type: CLOB, required: true }
+    post_title: { phpName: PostTitle, type: LONGVARCHAR, required: true }
+    post_excerpt: { phpName: PostExcerpt, type: LONGVARCHAR, required: true }
+    post_status: { phpName: PostStatus, type: VARCHAR, size: '20', required: true, defaultValue: publish }
+    comment_status: { phpName: CommentStatus, type: VARCHAR, size: '20', required: true, defaultValue: open }
+    ping_status: { phpName: PingStatus, type: VARCHAR, size: '20', required: true, defaultValue: open }
+    post_password: { phpName: PostPassword, type: VARCHAR, size: '20', required: true, defaultValue: '' }
+    post_name: { phpName: PostName, type: VARCHAR, size: '200', required: true, defaultValue: '' }
+    to_ping: { phpName: ToPing, type: LONGVARCHAR, required: true }
+    pinged: { phpName: Pinged, type: LONGVARCHAR, required: true }
+    post_modified: { phpName: PostModified, type: TIMESTAMP, required: true, defaultValue: '0000-00-00 00:00:00' }
+    post_modified_gmt: { phpName: PostModifiedGmt, type: TIMESTAMP, required: true, defaultValue: '0000-00-00 00:00:00' }
+    post_content_filtered: { phpName: PostContentFiltered, type: CLOB, required: true }
+    post_parent: { phpName: PostParent, type: BIGINT, sqlType: 'bigint(20) unsigned', required: true, defaultValue: '0' }
+    guid: { phpName: Guid, type: VARCHAR, size: '255', required: true, defaultValue: '' }
+    menu_order: { phpName: MenuOrder, type: INTEGER, required: true, defaultValue: '0' }
+    post_type: { phpName: PostType, type: VARCHAR, size: '20', required: true, defaultValue: post }
+    post_mime_type: { phpName: PostMimeType, type: VARCHAR, size: '100', required: true, defaultValue: '' }
+    comment_count: { phpName: CommentCount, type: BIGINT, required: true, defaultValue: '0' }
+    _indexes: { post_name: [post_name], type_status_date: [post_type, post_status, post_date, ID], post_parent: [post_parent], post_author: [post_author] }
+  wp_term_relationships:
+    _attributes: { phpName: WpTermRelationships, idMethod: native }
+    object_id: { phpName: ObjectId, type: BIGINT, sqlType: 'bigint(20) unsigned', primaryKey: true, required: true, defaultValue: '0' }
+    term_taxonomy_id: { phpName: TermTaxonomyId, type: BIGINT, sqlType: 'bigint(20) unsigned', primaryKey: true, required: true, defaultValue: '0' }
+    term_order: { phpName: TermOrder, type: INTEGER, required: true, defaultValue: '0' }
+    _indexes: { term_taxonomy_id: [term_taxonomy_id] }
+  wp_term_taxonomy:
+    _attributes: { phpName: WpTermTaxonomy, idMethod: native }
+    term_taxonomy_id: { phpName: TermTaxonomyId, type: BIGINT, sqlType: 'bigint(20) unsigned', primaryKey: true, autoIncrement: true, required: true }
+    term_id: { phpName: TermId, type: BIGINT, sqlType: 'bigint(20) unsigned', required: true, defaultValue: '0' }
+    taxonomy: { phpName: Taxonomy, type: VARCHAR, size: '32', required: true, defaultValue: '' }
+    description: { phpName: Description, type: CLOB, required: true }
+    parent: { phpName: Parent, type: BIGINT, sqlType: 'bigint(20) unsigned', required: true, defaultValue: '0' }
+    count: { phpName: Count, type: BIGINT, required: true, defaultValue: '0' }
+    _indexes: { taxonomy: [taxonomy] }
+    _uniques: { term_id_taxonomy: [term_id, taxonomy] }
+  wp_terms:
+    _attributes: { phpName: WpTerms, idMethod: native }
+    term_id: { phpName: TermId, type: BIGINT, sqlType: 'bigint(20) unsigned', primaryKey: true, autoIncrement: true, required: true }
+    name: { phpName: Name, type: VARCHAR, size: '200', required: true, defaultValue: '' }
+    slug: { phpName: Slug, type: VARCHAR, size: '200', required: true, defaultValue: '' }
+    term_group: { phpName: TermGroup, type: BIGINT, size: '10', required: true, defaultValue: '0' }
+    _indexes: { name: [name] }
+    _uniques: { slug: [slug] }
+  wp_usermeta:
+    _attributes: { phpName: WpUsermeta, idMethod: native }
+    umeta_id: { phpName: UmetaId, type: BIGINT, sqlType: 'bigint(20) unsigned', primaryKey: true, autoIncrement: true, required: true }
+    user_id: { phpName: UserId, type: BIGINT, sqlType: 'bigint(20) unsigned', required: true, defaultValue: '0' }
+    meta_key: { phpName: MetaKey, type: VARCHAR, size: '255', required: false }
+    meta_value: { phpName: MetaValue, type: CLOB, required: false }
+    _indexes: { user_id: [user_id], meta_key: [meta_key] }
+  wp_users:
+    _attributes: { phpName: WpUsers, idMethod: native }
+    ID: { phpName: Id, type: BIGINT, sqlType: 'bigint(20) unsigned', primaryKey: true, autoIncrement: true, required: true }
+    user_login: { phpName: UserLogin, type: VARCHAR, size: '60', required: true, defaultValue: '' }
+    user_pass: { phpName: UserPass, type: VARCHAR, size: '64', required: true, defaultValue: '' }
+    user_nicename: { phpName: UserNicename, type: VARCHAR, size: '50', required: true, defaultValue: '' }
+    user_email: { phpName: UserEmail, type: VARCHAR, size: '100', required: true, defaultValue: '' }
+    user_url: { phpName: UserUrl, type: VARCHAR, size: '100', required: true, defaultValue: '' }
+    user_registered: { phpName: UserRegistered, type: TIMESTAMP, required: true, defaultValue: '0000-00-00 00:00:00' }
+    user_activation_key: { phpName: UserActivationKey, type: VARCHAR, size: '60', required: true, defaultValue: '' }
+    user_status: { phpName: UserStatus, type: INTEGER, required: true, defaultValue: '0' }
+    display_name: { phpName: DisplayName, type: VARCHAR, size: '250', required: true, defaultValue: '' }
+    _indexes: { user_login_key: [user_login], user_nicename: [user_nicename] }

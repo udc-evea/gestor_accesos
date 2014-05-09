@@ -1,0 +1,7 @@
+wordpress:
+  _attributes:
+    package: lib.model
+    defaultIdMethod: native
+  wp_usermeta:
+    _attributes: { phpName: WpUsermeta, idMethod: native }
+    user_id: { phpName: UserId, foreignTable: wp_users, foreignReference: ID, onDelete: CASCADE  }

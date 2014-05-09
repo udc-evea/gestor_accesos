@@ -1,0 +1,1 @@
+<?php include_partial('inicio/form_acceso', array('item' => $prod, 'auto' => true));?>

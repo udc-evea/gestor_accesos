@@ -64,3 +64,18 @@ all:
       
       persistent: true
       pooling:    true
+  
+  wordpress:
+    class:        sfPropelDatabase
+    param:
+      classname:  PropelPDO
+      dsn:        mysql:dbname=wordpress;host=localhost
+      username:   root
+      password:   udc
+      
+      # see https://github.com/propelorm/sfPropelORMPlugin/issues/71
+      encoding:
+      queries: { value: 'SET NAMES UTF8;' }
+      
+      persistent: true
+      pooling:    true

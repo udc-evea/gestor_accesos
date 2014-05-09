@@ -30,7 +30,14 @@
         </a>
         <div class="nav-collapse">
           <a class="brand" href="<?php echo url_for("@homepage");?>"><?php echo sfConfig::get('app_name', "Proyecto");?></a>
+          <?php if($sf_user->isAuthenticated()):?>
+          <p class="navbar-text pull-left">Usuario: <?php echo $sf_user->getGuardUser()->getUsername();?></p>
           <!-- menu -->
+          <ul class="nav pull-right">
+            <li><a href="<?php echo url_for("@sf_guard_change_password");?>">Cambiar clave</a></li>
+            <li><a href="<?php echo url_for("@sf_guard_signout");?>">Salir</a></li>
+          </ul>
+          <?php endif;?>
         </div><!--/.nav-collapse -->
       </div>
     </div>

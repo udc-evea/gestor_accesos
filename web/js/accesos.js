@@ -28,7 +28,7 @@ var Accesos = {
       var $this = $(this);
       var $res  = $this.closest("tr").find(".resultado");
       
-      $res.hide().removeClass("text-success").addClass("text-error").text("Error: "+statusText).show(100);
+      $res.hide().removeClass("text-success").addClass("text-error").text("Error: "+xhr.statusText).show(100);
     });
     
     

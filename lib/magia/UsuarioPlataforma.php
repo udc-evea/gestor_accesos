@@ -15,6 +15,7 @@ abstract class UsuarioPlataforma
 {
   const PROD_MOODLE = 1;
   const PROD_PMF    = 2;
+  const PROD_WP     = 3;
   
   protected $producto;
   protected $usuario_nativo;
@@ -33,6 +34,10 @@ abstract class UsuarioPlataforma
      
      case self::PROD_PMF:
         $up =  new UsuarioPMF();
+       break;
+     
+     case self::PROD_WP:
+        $up =  new UsuarioWordpress();
        break;
        
       default:

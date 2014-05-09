@@ -19,4 +19,12 @@ class inicioActions extends sfActions
   {
     $this->prods = ProductoQuery::create()->orderByNombre()->find();
   }
+  
+  public function executeAccesoDirecto(sfWebRequest $request)
+  {
+    $producto = $request->getParameter('producto');
+    $this->prod = ProductoQuery::create()->findOneByNombreCorto($producto);
+    
+    $this->forward404Unless($this->prod, 'No existe el componente solicitado.');
+  }
 }

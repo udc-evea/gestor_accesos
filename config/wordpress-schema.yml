@@ -1,0 +1,24 @@
+wordpress:
+  _attributes:
+    package: lib.model
+    defaultIdMethod: native
+  wp_usermeta:
+    _attributes: { phpName: WpUsermeta, idMethod: native }
+    umeta_id: { phpName: UmetaId, type: BIGINT, sqlType: 'bigint(20) unsigned', primaryKey: true, autoIncrement: true, required: true }
+    user_id: { phpName: UserId, type: BIGINT, sqlType: 'bigint(20) unsigned', required: true, defaultValue: '0' }
+    meta_key: { phpName: MetaKey, type: VARCHAR, size: '255', required: false }
+    meta_value: { phpName: MetaValue, type: CLOB, required: false }
+    _indexes: { user_id: [user_id], meta_key: [meta_key] }
+  wp_users:
+    _attributes: { phpName: WpUsers, idMethod: native }
+    ID: { phpName: Id, type: BIGINT, sqlType: 'bigint(20) unsigned', primaryKey: true, autoIncrement: true, required: true }
+    user_login: { phpName: UserLogin, type: VARCHAR, size: '60', required: true, defaultValue: '' }
+    user_pass: { phpName: UserPass, type: VARCHAR, size: '64', required: true, defaultValue: '' }
+    user_nicename: { phpName: UserNicename, type: VARCHAR, size: '50', required: true, defaultValue: '' }
+    user_email: { phpName: UserEmail, type: VARCHAR, size: '100', required: true, defaultValue: '' }
+    user_url: { phpName: UserUrl, type: VARCHAR, size: '100', required: true, defaultValue: '' }
+    user_registered: { phpName: UserRegistered, type: TIMESTAMP, required: true, defaultValue: '0000-00-00 00:00:00' }
+    user_activation_key: { phpName: UserActivationKey, type: VARCHAR, size: '60', required: true, defaultValue: '' }
+    user_status: { phpName: UserStatus, type: INTEGER, required: true, defaultValue: '0' }
+    display_name: { phpName: DisplayName, type: VARCHAR, size: '250', required: true, defaultValue: '' }
+    _indexes: { user_login_key: [user_login], user_nicename: [user_nicename] }
