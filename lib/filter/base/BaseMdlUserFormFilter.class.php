@@ -38,6 +38,7 @@ abstract class BaseMdlUserFormFilter extends BaseFormFilterPropel
       'city'              => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'country'           => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'lang'              => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'calendartype'      => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'theme'             => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'timezone'          => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'firstaccess'       => new sfWidgetFormFilterInput(array('with_empty' => false)),
@@ -53,13 +54,16 @@ abstract class BaseMdlUserFormFilter extends BaseFormFilterPropel
       'mailformat'        => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'maildigest'        => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'maildisplay'       => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'htmleditor'        => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'autosubscribe'     => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'trackforums'       => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'timecreated'       => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'timemodified'      => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'trustbitmask'      => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'imagealt'          => new sfWidgetFormFilterInput(),
+      'lastnamephonetic'  => new sfWidgetFormFilterInput(),
+      'firstnamephonetic' => new sfWidgetFormFilterInput(),
+      'middlename'        => new sfWidgetFormFilterInput(),
+      'alternatename'     => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
@@ -89,6 +93,7 @@ abstract class BaseMdlUserFormFilter extends BaseFormFilterPropel
       'city'              => new sfValidatorPass(array('required' => false)),
       'country'           => new sfValidatorPass(array('required' => false)),
       'lang'              => new sfValidatorPass(array('required' => false)),
+      'calendartype'      => new sfValidatorPass(array('required' => false)),
       'theme'             => new sfValidatorPass(array('required' => false)),
       'timezone'          => new sfValidatorPass(array('required' => false)),
       'firstaccess'       => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
@@ -104,13 +109,16 @@ abstract class BaseMdlUserFormFilter extends BaseFormFilterPropel
       'mailformat'        => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'maildigest'        => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'maildisplay'       => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'htmleditor'        => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'autosubscribe'     => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'trackforums'       => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'timecreated'       => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'timemodified'      => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'trustbitmask'      => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'imagealt'          => new sfValidatorPass(array('required' => false)),
+      'lastnamephonetic'  => new sfValidatorPass(array('required' => false)),
+      'firstnamephonetic' => new sfValidatorPass(array('required' => false)),
+      'middlename'        => new sfValidatorPass(array('required' => false)),
+      'alternatename'     => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('mdl_user_filters[%s]');
@@ -155,6 +163,7 @@ abstract class BaseMdlUserFormFilter extends BaseFormFilterPropel
       'city'              => 'Text',
       'country'           => 'Text',
       'lang'              => 'Text',
+      'calendartype'      => 'Text',
       'theme'             => 'Text',
       'timezone'          => 'Text',
       'firstaccess'       => 'Number',
@@ -170,13 +179,16 @@ abstract class BaseMdlUserFormFilter extends BaseFormFilterPropel
       'mailformat'        => 'Boolean',
       'maildigest'        => 'Boolean',
       'maildisplay'       => 'Number',
-      'htmleditor'        => 'Boolean',
       'autosubscribe'     => 'Boolean',
       'trackforums'       => 'Boolean',
       'timecreated'       => 'Number',
       'timemodified'      => 'Number',
       'trustbitmask'      => 'Number',
       'imagealt'          => 'Text',
+      'lastnamephonetic'  => 'Text',
+      'firstnamephonetic' => 'Text',
+      'middlename'        => 'Text',
+      'alternatename'     => 'Text',
     );
   }
 }

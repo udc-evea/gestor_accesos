@@ -25,13 +25,12 @@ moodle:
     msn: { phpName: Msn, type: VARCHAR, size: '50', required: true, defaultValue: '' }
     phone1: { phpName: Phone1, type: VARCHAR, size: '20', required: true, defaultValue: '' }
     phone2: { phpName: Phone2, type: VARCHAR, size: '20', required: true, defaultValue: '' }
-    institution: { phpName: Institution, type: VARCHAR, size: '255', required: true, defaultValue: '' }
-    department: { phpName: Department, type: VARCHAR, size: '255', required: true, defaultValue: '' }
-    address: { phpName: Address, type: VARCHAR, size: '255', required: true, defaultValue: '' }
+    institution: { phpName: Institution, type: VARCHAR, size: '40', required: true, defaultValue: '' }
+    department: { phpName: Department, type: VARCHAR, size: '30', required: true, defaultValue: '' }
+    address: { phpName: Address, type: VARCHAR, size: '70', required: true, defaultValue: '' }
     city: { phpName: City, type: VARCHAR, size: '120', required: true, defaultValue: '' }
     country: { phpName: Country, type: VARCHAR, size: '2', required: true, defaultValue: '' }
     lang: { phpName: Lang, type: VARCHAR, size: '30', required: true, defaultValue: en }
-    calendartype: { phpName: Calendartype, type: VARCHAR, size: '30', required: true, defaultValue: gregorian }
     theme: { phpName: Theme, type: VARCHAR, size: '50', required: true, defaultValue: '' }
     timezone: { phpName: Timezone, type: VARCHAR, size: '100', required: true, defaultValue: '99' }
     firstaccess: { phpName: Firstaccess, type: BIGINT, size: '10', required: true, defaultValue: '0' }
@@ -47,15 +46,12 @@ moodle:
     mailformat: { phpName: Mailformat, type: BOOLEAN, size: '1', required: true, defaultValue: true }
     maildigest: { phpName: Maildigest, type: BOOLEAN, size: '1', required: true, defaultValue: false }
     maildisplay: { phpName: Maildisplay, type: TINYINT, size: '2', required: true, defaultValue: '2' }
+    htmleditor: { phpName: Htmleditor, type: BOOLEAN, size: '1', required: true, defaultValue: true }
     autosubscribe: { phpName: Autosubscribe, type: BOOLEAN, size: '1', required: true, defaultValue: true }
     trackforums: { phpName: Trackforums, type: BOOLEAN, size: '1', required: true, defaultValue: false }
     timecreated: { phpName: Timecreated, type: BIGINT, size: '10', required: true, defaultValue: '0' }
     timemodified: { phpName: Timemodified, type: BIGINT, size: '10', required: true, defaultValue: '0' }
     trustbitmask: { phpName: Trustbitmask, type: BIGINT, size: '10', required: true, defaultValue: '0' }
     imagealt: { phpName: Imagealt, type: VARCHAR, size: '255', required: false }
-    lastnamephonetic: { phpName: Lastnamephonetic, type: VARCHAR, size: '255', required: false }
-    firstnamephonetic: { phpName: Firstnamephonetic, type: VARCHAR, size: '255', required: false }
-    middlename: { phpName: Middlename, type: VARCHAR, size: '255', required: false }
-    alternatename: { phpName: Alternatename, type: VARCHAR, size: '255', required: false }
-    _indexes: { mdl_user_del_ix: [deleted], mdl_user_con_ix: [confirmed], mdl_user_fir_ix: [firstname], mdl_user_las_ix: [lastname], mdl_user_cit_ix: [city], mdl_user_cou_ix: [country], mdl_user_las2_ix: [lastaccess], mdl_user_ema_ix: [email], mdl_user_aut_ix: [auth], mdl_user_idn_ix: [idnumber], mdl_user_fir2_ix: [firstnamephonetic], mdl_user_las3_ix: [lastnamephonetic], mdl_user_mid_ix: [middlename], mdl_user_alt_ix: [alternatename] }
+    _indexes: { mdl_user_del_ix: [deleted], mdl_user_con_ix: [confirmed], mdl_user_fir_ix: [firstname], mdl_user_las_ix: [lastname], mdl_user_cit_ix: [city], mdl_user_cou_ix: [country], mdl_user_las2_ix: [lastaccess], mdl_user_ema_ix: [email], mdl_user_aut_ix: [auth], mdl_user_idn_ix: [idnumber] }
     _uniques: { mdl_user_mneuse_uix: [mnethostid, username] }
