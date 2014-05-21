@@ -14,3 +14,4 @@ lib/model/map/*
 web/*Plugin
 /nbproject/private/
 lib/vendor/*
+/apps/frontend/config/factories.yml
