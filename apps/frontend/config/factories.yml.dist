@@ -50,3 +50,5 @@ all:
     class: sfSessionStorage
     param:
       session_name: udc_evea_sso
+      session_cookie_path: /
+      session_cookie_domain: .udc.edu.ar
